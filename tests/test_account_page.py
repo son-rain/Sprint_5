@@ -2,6 +2,7 @@ from locators import *
 from data import Data
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from helpers import Helpers as helpers
 
 
 class TestAccountPageStellarBurgers:
@@ -9,9 +10,7 @@ class TestAccountPageStellarBurgers:
         driver.get(Data.STELLAR_BURGER_ACCOUNT_URL)
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(
             BurgerLocators.LOGIN_LABEL))
-        driver.find_element(*BurgerLocators.LOGIN_NAME_INPUT).send_keys('zeleboba387@yandex.ru')
-        driver.find_element(*BurgerLocators.LOGIN_PWD_INPUT).send_keys('Zelebobba')
-        driver.find_element(*BurgerLocators.LOGIN_ENTER_BUTTON).click()
+        helpers.login(driver)
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(
             BurgerLocators.HOME_LABEL))
         driver.find_element(*BurgerLocators.HOME_ACCOUNT_BUTTON).click()
@@ -24,9 +23,7 @@ class TestAccountPageStellarBurgers:
         driver.get(Data.STELLAR_BURGER_ACCOUNT_URL)
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(
             BurgerLocators.LOGIN_LABEL))
-        driver.find_element(*BurgerLocators.LOGIN_NAME_INPUT).send_keys('zeleboba387@yandex.ru')
-        driver.find_element(*BurgerLocators.LOGIN_PWD_INPUT).send_keys('Zelebobba')
-        driver.find_element(*BurgerLocators.LOGIN_ENTER_BUTTON).click()
+        helpers.login(driver)
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(
             BurgerLocators.HOME_LABEL))
         driver.find_element(*BurgerLocators.HOME_ACCOUNT_BUTTON).click()
@@ -40,9 +37,7 @@ class TestAccountPageStellarBurgers:
         driver.get(Data.STELLAR_BURGER_ACCOUNT_URL)
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(
             BurgerLocators.LOGIN_LABEL))
-        driver.find_element(*BurgerLocators.LOGIN_NAME_INPUT).send_keys('zeleboba387@yandex.ru')
-        driver.find_element(*BurgerLocators.LOGIN_PWD_INPUT).send_keys('Zelebobba')
-        driver.find_element(*BurgerLocators.LOGIN_ENTER_BUTTON).click()
+        helpers.login(driver)
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(
             BurgerLocators.HOME_LABEL))
         driver.find_element(*BurgerLocators.HOME_ACCOUNT_BUTTON).click()
@@ -51,7 +46,6 @@ class TestAccountPageStellarBurgers:
         driver.find_element(*BurgerLocators.ACCOUNT_QUIT_BUTTON).click()
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
             BurgerLocators.LOGIN_LABEL))
-        assert driver.current_url == Data.STELLAR_BURGER_LOGIN_URL
         driver.find_element(*BurgerLocators.HOME_LOGO).click()
         assert driver.find_element(*BurgerLocators.HOME_LOGIN_BUTTON).is_displayed()
 

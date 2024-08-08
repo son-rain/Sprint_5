@@ -1,9 +1,8 @@
-import random
-
 from locators import *
 from data import Data
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from helpers import Helpers as helpers
 
 
 class TestRegistrationStellarBurgers:
@@ -12,10 +11,10 @@ class TestRegistrationStellarBurgers:
         driver.get(Data.STELLAR_BURGER_REGISTRATION_URL)
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
             BurgerLocators.REGISTRATION_LABEL))
-        user_name = f'test_user{random.randint(12, 1000)}'
+        user_name = helpers.generate_user_name()
         driver.find_element(*BurgerLocators.NAME_INPUT).send_keys(user_name)
-        driver.find_element(*BurgerLocators.EMAIL_INPUT).send_keys(f'{user_name}@ya.ru')
-        driver.find_element(*BurgerLocators.PWD_INPUT).send_keys('test12345')
+        driver.find_element(*BurgerLocators.EMAIL_INPUT).send_keys(helpers.generate_email(user_name))
+        driver.find_element(*BurgerLocators.PWD_INPUT).send_keys(helpers.generate_pwd())
         driver.find_element(*BurgerLocators.REGISTRATION_SUBMIT_BUTTON).click()
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
             BurgerLocators.LOGIN_LABEL))
@@ -25,10 +24,10 @@ class TestRegistrationStellarBurgers:
         driver.get(Data.STELLAR_BURGER_REGISTRATION_URL)
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
             BurgerLocators.REGISTRATION_LABEL))
-        user_name = f'test_user{random.randint(12, 1000)}'
+        user_name = helpers.generate_user_name()
         driver.find_element(*BurgerLocators.NAME_INPUT).send_keys(user_name)
-        driver.find_element(*BurgerLocators.EMAIL_INPUT).send_keys(f'{user_name}@ya.ru')
-        driver.find_element(*BurgerLocators.PWD_INPUT).send_keys('test1')
+        driver.find_element(*BurgerLocators.EMAIL_INPUT).send_keys(helpers.generate_email(user_name))
+        driver.find_element(*BurgerLocators.PWD_INPUT).send_keys(Data.WRONG_PWD)
         driver.find_element(*BurgerLocators.REGISTRATION_SUBMIT_BUTTON).click()
         error_label = driver.find_element(*BurgerLocators.REGISTRATION_PWD_ERR_LABEL)
         assert error_label.text == "Некорректный пароль"

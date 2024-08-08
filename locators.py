@@ -34,10 +34,10 @@ class BurgerLocators:
     HOME_TOPPINGS_TAB = (By.XPATH, '//span[text()="Начинки"]/parent::div[contains(@class,"tab")]')
 
     # Надпись Вход
-    LOGIN_LABEL = (By.XPATH, './/div[@id="root"]//main//h2[text()="Вход"]')
+    LOGIN_LABEL = (By.XPATH, '//div[contains(@class, "login")]/h2[text()="Вход"]')
 
     # Поле Email при входе
-    LOGIN_NAME_INPUT = (By.XPATH, '//form//input[@name="name"]')
+    LOGIN_NAME_INPUT = (By.XPATH, '//label[text()="Email"]/following-sibling::input')
 
     # Поле Пароль при входе
     LOGIN_PWD_INPUT = (By.XPATH, '//form//input[@name="Пароль"]')
@@ -64,10 +64,10 @@ class BurgerLocators:
     FORGOTTEN_PWD_LINK = (By.XPATH, '//main//div//a[text()="Войти"]')
 
     # Название страницы для восстановления пароля
-    FORGOTTEN_LABEL = (By.XPATH, './/div[@id="root"]//main//h2[text()="Восстановление пароля"]')
+    FORGOTTEN_LABEL = (By.XPATH, '//div[contains(@class, "login")]/h2[text()="Восстановление пароля"]')
 
     # Название страницы регистрации
-    REGISTRATION_LABEL = (By.XPATH, './/div[@id="root"]//main//h2[text()="Регистрация"]')
+    REGISTRATION_LABEL = (By.XPATH, '//div[contains(@class, "login")]/h2[text()="Регистрация"]')
 
     # Ссылка для входа со страницы регистрации
     REGISTRATION_LOGIN_LINK = (By.XPATH, '//main//div//a[text()="Войти"]')
